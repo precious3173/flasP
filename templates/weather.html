@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,
+initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family:  Arial, Helvetica, sans-serif;
+            background-color: rgb(160, 160, 201);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: aliceblue;
+            padding: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) ;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px; /* Space between elements */
+        }
+        input {
+            padding: 5px;
+            font-size: 1rem;
+        }
+        button {
+            padding: 5px 10px;
+            font-size: 1rem;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .weather-info {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+ <div class="container">
+
+
+    <form method="POST">
+        <label for="city">Enter City:</label>
+        <input type="text" id="city" name="city" placeholder="City" required>
+        <button type="submit">Get Weather</button>  
+    </form>
+    {% if city and city != "" %}
+<div class="weather-info">
+    <h2>Weather Information for {{city}}</h2>
+    <p>Temperature: {{temperature }} °C</p>
+    <p>Description: {{ description }}</p>
+</div>
+    {% endif %}
+
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+</div>
+</body>
+</html>

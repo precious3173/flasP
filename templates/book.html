@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+    <style>
+       body{
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 25px;
+            line-height: 1.0; 
+            background-color: antiquewhite;
+        }
+        form{
+            margin-top: 20px;
+            width: 80%; 
+            max-width: 600px;
+            max-height: 200px; 
+        
+          
+        }
+      
+    </style>
+</head>
+<body>
+    <h1>Welcome to My Book Club</h1>
+    <p>We have different genres. So Pick from the options</p>
+    <p>1. action</p>
+    <p>2. adventure</p>
+    <p>3. romance</p>
+    <p>4. programming</p>
+    <p>5. biology</p>
+    <p>6. food</p>
+    <form method="POST">
+        <input type = "text" name="query" placeholder="Search for Books">
+        <button type="submit">Search</button>
+    </form>
+  
+    {% if query %}
+        {% if "error" in books_data %}
+            <p>{{ books_data.error }}</p>
+        {% else %}
+            <h2>Search Results for "{{ query }}":</h2>
+            <div class="book-list">
+                {% for book in books_data %}
+                    <div class="book">
+                        <img src="{{ book.image }}" alt="Cover of {{ book.title }}">
+                        <h3>{{ book.title }}</h3>
+                        <h3>{{ book.title }}</h3>
+                        <p><strong>ID:</strong> {{ book.id }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% else %}
+        <p>Use the search box above to find books.</p>
+    {% endif %}
+</body>
+</html>
